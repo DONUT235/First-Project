@@ -5,6 +5,6 @@ let qs = document.querySelector.bind(document);
 qs('#h1frm').addEventListener('submit', (e) => {
     e.preventDefault();
     const textInput = e.target.textInput;
-    qs('#spells').innerHTML += textInput.value + '<br />';
+    qs('#spells').innerHTML += `<li>${textInput.value}</li>`;
     textInput.value = '';
 });
