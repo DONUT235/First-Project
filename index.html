@@ -1,24 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Spellbook</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Spellbook</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
 </head>
 <body>
-    <h1 id="heading1">Spellbook</h1>
-    <!-- <h1 id="heading2">Heading 2</h1>
-    <h1>Heading 3</h1>
-    <button id="h2btn">Change heading 2's text</button> -->
-    <form id="h1frm">
-        <input type="text" name="textInput" autofocus
-            placeholder="Name of the new spell"
-        >
-        <input type="submit" value="Add Spell"|>
-    </form>
+  <img src="skull.png" id="skull" alt="">
+  <img src="quill.png" id="quill" alt="">
+
+
+  <h1>Spellbook</h1>
+
+  <form>
+    <div>
+      <input
+        type="text"
+        name="spellName"
+        placeholder="Enter a spell name"
+        autofocus
+      >
+      <select name="spellLevel">
+        <option>Cantrip</option>
+        <option>Level 1</option>
+        <option>Level 2</option>
+        <option>Level 3</option>
+        <option>Level 4</option>
+        <option>Level 5</option>
+        <option>Level 6</option>
+        <option>Level 7</option>
+        <option>Level 8</option>
+        <option>Level 9</option>
+      </select>
+      <button type="submit">Add</button>
+    </div>
+  </form>
+
+  <main>
     <ul id="spells"></ul>
-    <script src="index.js"></script>
+  </main>
+
+  <script src="index.js"></script>
 </body>
 </html>
