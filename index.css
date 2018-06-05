@@ -117,18 +117,69 @@ main {
   height: calc(100vh - 18.5vw - 4rem);
   overflow-y: scroll;
   font-family: "Homemade Apple", cursive;
-  font-size: 2rem;
-  color: rgba(100, 50, 0, 0.8);
+  font-size: 1rem;
+  color: rgb(51, 26, 0);
   padding: 1.5rem 4rem;
   box-shadow: 1px 1px 15px  rgba(0,0,0,0.4);
 }
 
-ul#spells {
+#legend {
+  background-image: url(parchment.jpg);
+  box-sizing: border-box;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 50vw;
+  margin-left: 10vw;
+  font-family: "Homemade Apple", cursive;
+  font-size: 1rem;
+  padding: 1.5rem 4rem;
+  height: auto;
+  box-shadow: 1px 1px 15px  rgba(0,0,0,0.4);
+}
+
+main > ul {
  list-style: none;
  padding: 0;
+}
+
+span.spellCategory {
+  font-weight: bold;
+  font-size: 1.2em;
 }
 
 .details {
   font-size: 0.7em;
   margin-top: -1rem;
+}
+
+.Evocation {
+  color: darkorange;
+}
+
+.Illusion {
+  color: rgba(64,64,64,0.5);
+}
+
+.Conjuration {
+  color: blue;
+}
+
+.Necromancy {
+  color: black;
+}
+
+.Divination {
+  color: aqua;
+}
+
+.Enchantment {
+  color: red;
+}
+
+.Abjuration {
+  color: white;
+}
+
+.Transmutation {
+  color: green;
 }
