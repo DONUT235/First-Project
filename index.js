@@ -6,8 +6,8 @@ const qs = s => document.querySelector(s);
 (function() {
     const book = qs('main');
     for(let i = 1; i <= 9; ++i) {
-      book.innerHTML += `<span class="spellCategory">Level ${i} Spells</span>`
-      book.innerHTML += `<ul id=Level_${i}_spells></ul>`  
+      book.innerHTML += `<span class="spellCategory">Level ${i} Spells</span>`;
+      book.innerHTML += `<ul id=Level_${i}_spells></ul>`;  
     }
 })();
 
