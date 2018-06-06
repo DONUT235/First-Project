@@ -8,25 +8,32 @@ const qs = s => document.querySelector(s);
     }
 })();
 
-function buildListItem(level) {
-    const newItem = document.createElement('li');
-    const list = qs(`#${level.replace(' ','_')}_spells`);
-    list.appendChild(newItem);
-    console.log(list);
-    return newItem;
-}
-
-function buildSpan(name, school, listItem) {
-    const newSpan = document.createElement('span');
-    newSpan.className = school;
-    newSpan.textContent = name;
-    listItem.appendChild(newSpan);
+function Spell(name, level, school) {
+    this.name = name;
+    this.level = level;
+    this.school = school;
+    this.buildListItem = function() {
+        const newItem = document.createElement('li');
+        const list = qs(`#${this.level.replace(' ','_')}_spells`);
+        console.log(list);
+        list.appendChild(newItem);
+        return newItem;
+    }
+    this.buildSpan = function() {
+        const newSpan = document.createElement('span');
+        newSpan.className = this.school;
+        newSpan.textContent = this.name;
+        return newSpan;
+    }
+    this.makeDomElement = function () {
+        this.buildListItem().appendChild(this.buildSpan());
+    }
 }
 
 qs('form').addEventListener('submit', (ev) => {
     ev.preventDefault();
     const gi = s => ev.target[s].value;
-    buildSpan(gi('spellName'),gi('spellSchool'),buildListItem(gi('spellLevel')));
+    new Spell(gi('spellName'),gi('spellLevel'),gi('spellSchool')).makeDomElement();
     ev.target.spellName.value = '';
     ev.target.spellName.focus();
 });
