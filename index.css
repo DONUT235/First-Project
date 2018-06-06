@@ -183,3 +183,9 @@ span.spellCategory {
 .Transmutation {
   color: green;
 }
+
+#secretLoad {
+  position: absolute;
+  right: 5vw;
+  top: calc(60vw + 40px);
+}
