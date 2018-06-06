@@ -27,4 +27,6 @@ qs('form').addEventListener('submit', (ev) => {
     ev.preventDefault();
     const gi = s => ev.target[s].value;
     buildSpan(gi('spellName'),gi('spellSchool'),buildListItem(gi('spellLevel')));
+    ev.target.spellName.value = '';
+    ev.target.spellName.focus();
 });
