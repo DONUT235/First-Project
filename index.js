@@ -1,7 +1,4 @@
 const qs = s => document.querySelector(s);
-/*qs('#h2btn').addEventListener('click', () => {
-    qs('#heading2').textContent = 'Different Text!';
-});*/
 //Dynamically add multiple spell categories
 (function() {
     const book = qs('main');
@@ -10,7 +7,6 @@ const qs = s => document.querySelector(s);
       book.innerHTML += `<ul id=Level_${i}_spells></ul>`;  
     }
 })();
-
 
 function buildListItem(level) {
     const newItem = document.createElement('li');
@@ -27,8 +23,8 @@ function buildSpan(name, school, listItem) {
     listItem.appendChild(newSpan);
 }
 
-qs('form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const gi = s => e.target[s].value;
+qs('form').addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const gi = s => ev.target[s].value;
     buildSpan(gi('spellName'),gi('spellSchool'),buildListItem(gi('spellLevel')));
 });
