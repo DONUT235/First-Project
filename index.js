@@ -10,6 +10,7 @@ function SpellBook() {
 			if(this.spellList[i].name === name) {
 				this.spellList[i].remove();
 				this.spellList.splice(i,1);
+				return;
 			}
 		}
 	}
@@ -41,7 +42,7 @@ function Spell(name, level, school) {
 }
 
 
-(function () {
+spellBook = (function () {
 	const book = document.querySelector('main');
 	//Dynamically add multiple spell categories
 	for(let i = 1; i <= 9; ++i) {
@@ -62,4 +63,5 @@ function Spell(name, level, school) {
 		ev.target.removeName.value = '';
 		ev.target.removeName.focus();
 	});
+	return app.spellList;
 })();
