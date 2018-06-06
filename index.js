@@ -14,6 +14,26 @@ function SpellBook() {
 			}
 		}
 	}
+
+	this.save = function() {
+		document.querySelector('div>textArea').value = JSON.stringify(this.spellList);
+	}
+	this.load = function() {
+		const hiddenStyle = document.querySelector('div#secretLoad').style;
+		if(hiddenStyle.display !== 'none') {
+			if(this.spellList.length === 0) {
+				const input = JSON.parse(document.querySelector('div>textarea').value);
+				while(input.length > 0) {
+					const loadedSpell = input.pop();
+					console.log(loadedSpell);
+					this.addSpell(loadedSpell.name, loadedSpell.level, loadedSpell.school);
+				}
+			}
+			hiddenStyle.display = 'none';
+		} else {
+			hiddenStyle.display = 'block';
+		}
+	}
 }
 
 function Spell(name, level, school) {
@@ -42,7 +62,7 @@ function Spell(name, level, school) {
 }
 
 
-spellBook = (function () {
+{
 	const book = document.querySelector('main');
 	//Dynamically add multiple spell categories
 	for(let i = 1; i <= 9; ++i) {
@@ -63,5 +83,7 @@ spellBook = (function () {
 		ev.target.removeName.value = '';
 		ev.target.removeName.focus();
 	});
-	return app.spellList;
-})();
+	document.querySelector('#quill').addEventListener('click', ev => app.save());
+	document.querySelector('#skull').addEventListener('click', ev => app.load());
+	var spellBook = app.spellList;
+}
