@@ -16,22 +16,22 @@ function SpellBook() {
 	}
 
 	this.save = function() {
-		document.querySelector('div>textArea').value = JSON.stringify(this.spellList);
+		document.querySelector('#secretLoad').value = JSON.stringify(this.spellList);
 	}
 	this.load = function() {
-		const hiddenStyle = document.querySelector('div#secretLoad').style;
-		if(hiddenStyle.display !== 'none') {
+		const hiddenArea = document.querySelector('#secretLoad');
+		if(hiddenArea.style.display !== 'none') {
 			if(this.spellList.length === 0) {
-				const input = JSON.parse(document.querySelector('div>textarea').value);
+				const input = JSON.parse(hiddenArea.value);
 				while(input.length > 0) {
 					const loadedSpell = input.pop();
 					console.log(loadedSpell);
 					this.addSpell(loadedSpell.name, loadedSpell.level, loadedSpell.school);
 				}
 			}
-			hiddenStyle.display = 'none';
+			hiddenArea.style.display = 'none';
 		} else {
-			hiddenStyle.display = 'block';
+			hiddenArea.style.display = 'block';
 		}
 	}
 }
