@@ -6,11 +6,11 @@ function App() {
       book.innerHTML += `<ul id=Level_${i}_spells></ul>`;  
     }
     this.spellList = [];
-    qs('form').addEventListener('submit', (ev) => {
+    document.querySelector('#addForm').addEventListener('submit', (ev) => {
         ev.preventDefault();
         const gi = s => ev.target[s].value;
         const newSpell = new Spell(gi('spellName'),gi('spellLevel'),gi('spellSchool'));
-        newSpell.makeDomElement;
+        newSpell.makeDomElement();
         this.spellList.push(newSpell);
         ev.target.spellName.value = '';
         ev.target.spellName.focus();
@@ -40,3 +40,4 @@ function Spell(name, level, school) {
     }
 }
 
+const app = new App();

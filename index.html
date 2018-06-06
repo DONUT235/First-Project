@@ -14,7 +14,7 @@
 
   <h1>Spellbook</h1>
 
-  <form>
+  <form id="addForm">
     <div>
       <input
         type="text"
@@ -44,7 +44,17 @@
         <option>Abjuration</option>
         <option>Divination</option>
       </select>
-      <button type="submit">Add</button>
+      <input type="submit" value="Add">
+    </div>
+  </form>
+  <form id="removeForm">
+    <div>
+      <input
+        type="text"
+        name="removeName"
+        placeholder="Name of spell to remove"
+      >
+      <input type="submit" value="Remove">
     </div>
   </form>
 

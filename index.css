@@ -81,7 +81,7 @@ input[type="text"]:focus {
   flex: 0 0 auto;
 }
 
-button[type="submit"] {
+input[type="submit"] {
   background-color: #F8BE3D;
   color: #0a0a0a;
   height: auto;
