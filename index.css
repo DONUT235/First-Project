@@ -137,7 +137,7 @@ main {
   box-shadow: 1px 1px 15px  rgba(0,0,0,0.4);
 }
 
-main > ul {
+main > div > ul {
  list-style: none;
  padding: 0;
 }
@@ -187,5 +187,5 @@ span.spellCategory {
 #secretLoad {
   position: absolute;
   right: 5vw;
-  top: calc(60vw + 40px);
+  top: calc(60vw + 20px);
 }

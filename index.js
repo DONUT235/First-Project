@@ -41,10 +41,13 @@ function Spell(name, level, school) {
 	this.level = level;
 	this.school = school;
 	this.buildListItem = function() {
-		const newItem = document.createElement('li');
+		this.li = document.createElement('li');
 		const list = document.querySelector(`#${this.level.replace(' ','_')}_spells`);
-		list.appendChild(newItem);
-		return newItem;
+		console.log(list.parentNode);
+		if(list.parentNode.style.display === 'none') {
+			list.parentNode.style.display = "block";
+		}
+		list.appendChild(this.li);
 	}
 	this.buildSpan = function() {
 		const newSpan = document.createElement('span');
@@ -53,11 +56,17 @@ function Spell(name, level, school) {
 		return newSpan;
 	}
 	this.makeDomElement = function () {
-		this.li = this.buildListItem();
+		this.buildListItem();
 		this.li.appendChild(this.buildSpan());
 	}
 	this.remove = function() {
-		this.li.remove();
+		const ul = this.li.parentNode;
+		ul.removeChild(this.li);
+		console.log(ul.childNodes.length);
+		if(ul.childNodes.length === 0) {
+			console.log(ul.style.display);
+			ul.parentNode.style.display = 'none';
+		}
 	}
 }
 
@@ -66,8 +75,8 @@ function Spell(name, level, school) {
 	const book = document.querySelector('main');
 	//Dynamically add multiple spell categories
 	for(let i = 1; i <= 9; ++i) {
-		book.innerHTML += `<span class="spellCategory">Level ${i} Spells</span>`;
-		book.innerHTML += `<ul id=Level_${i}_spells></ul>`;  
+		book.innerHTML += (`<div style="display:none"><span class="spellCategory">Level ${i} Spells</span>` +
+		                   `<ul id=Level_${i}_spells></ul></div>`);  
 	}
 	const app = new SpellBook();
 	document.querySelector('#addForm').addEventListener('submit', ev => {
