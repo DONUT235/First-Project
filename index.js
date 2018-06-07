@@ -43,7 +43,6 @@ function Spell(name, level, school) {
 	this.buildListItem = function() {
 		this.li = document.createElement('li');
 		const list = document.querySelector(`#${this.level.replace(' ','_')}_spells`);
-		console.log(list.parentNode);
 		if(list.parentNode.style.display === 'none') {
 			list.parentNode.style.display = "block";
 		}
@@ -62,9 +61,7 @@ function Spell(name, level, school) {
 	this.remove = function() {
 		const ul = this.li.parentNode;
 		ul.removeChild(this.li);
-		console.log(ul.childNodes.length);
 		if(ul.childNodes.length === 0) {
-			console.log(ul.style.display);
 			ul.parentNode.style.display = 'none';
 		}
 	}
