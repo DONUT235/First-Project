@@ -189,3 +189,7 @@ span.spellCategory {
 .Transmutation {
   color: green;
 }
+
+.favButton {
+  padding-left: 20px;
+}

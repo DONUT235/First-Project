@@ -5,7 +5,7 @@ function SpellBook() {
 	}
 	this.removeSpell = function(name) {
 		for(let i = 0; i < this.spellList.length; ++i) {
-			if(this.spellList[i].name === name) {
+			if(this.spellList[i].name === name && !this.spellList[i].isFavorite) {
 				this.spellList[i].remove();
 				this.spellList.splice(i,1);
 				return;
@@ -13,7 +13,7 @@ function SpellBook() {
 		}
 	}
 
-	//TODO: Make save/load interface more intuitive
+	//TODO: Make save/load interface
 	this.save = function() {	
 	}
 	this.load = function() {
@@ -24,7 +24,8 @@ function Spell(name, level, school) {
 	this.name = name;
 	this.level = level;
 	this.school = school;
-	this.isFavorite = false;
+	this.isFavorite = false; /*spells which are favorites may not be deleted, and are
+	preserved when a JSON list is loaded */
 	this.buildListItem = function() {
 		this.li = document.createElement('li');
 		const list = document.querySelector(`#${this.level.replace(' ','_')}_spells`);
