@@ -10,12 +10,18 @@ body {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-img#skull {
+.skull {
   position: absolute;
   right: 5vw;
   top: 5vw;
   transform: rotate(15deg);
   width: 25vw;
+  box-sizing: border-box;
+}
+
+div.skull {
+  top: 20vw;
+  text-align: center;
 }
 
 img#quill {
@@ -182,10 +188,4 @@ span.spellCategory {
 
 .Transmutation {
   color: green;
-}
-
-#secretLoad {
-  position: absolute;
-  right: 5vw;
-  top: calc(60vw + 20px);
 }

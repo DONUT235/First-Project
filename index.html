@@ -8,9 +8,13 @@
   <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
 </head>
 <body>
-  <img src="skull.png" id="skull" alt="">
+  <img src="skull.png" class="skull" alt=""><div class="skull">Export/Import Spells</div>
   <img src="quill.png" id="quill" alt="">
-  <textarea style="display:none" id=secretLoad>[]</textarea>
+  <div style="display:none" id="secretLoad">
+    <textarea>[]</textarea><br />
+    <button id="loadButton">Load from JSON</button>
+    <button id="hideButton">Close</button>
+  </div>
 
 
   <h1>Spellbook</h1>

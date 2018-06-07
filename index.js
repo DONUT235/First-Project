@@ -1,9 +1,7 @@
 function SpellBook() {
 	this.spellList = [];
 	this.addSpell = function(name, level, school) {
-		const newSpell = new Spell(name,level,school);
-		newSpell.makeDomElement();
-		this.spellList.push(newSpell);
+		this.spellList.push(new Spell(name,level,school));
 	}
 	this.removeSpell = function(name) {
 		for(let i = 0; i < this.spellList.length; ++i) {
@@ -15,24 +13,10 @@ function SpellBook() {
 		}
 	}
 
-	this.save = function() {
-		document.querySelector('#secretLoad').value = JSON.stringify(this.spellList);
+	//TODO: Make save/load interface more intuitive
+	this.save = function() {	
 	}
 	this.load = function() {
-		const hiddenArea = document.querySelector('#secretLoad');
-		if(hiddenArea.style.display !== 'none') {
-			if(this.spellList.length === 0) {
-				const input = JSON.parse(hiddenArea.value);
-				while(input.length > 0) {
-					const loadedSpell = input.pop();
-					console.log(loadedSpell);
-					this.addSpell(loadedSpell.name, loadedSpell.level, loadedSpell.school);
-				}
-			}
-			hiddenArea.style.display = 'none';
-		} else {
-			hiddenArea.style.display = 'block';
-		}
 	}
 }
 
@@ -40,6 +24,7 @@ function Spell(name, level, school) {
 	this.name = name;
 	this.level = level;
 	this.school = school;
+	this.isFavorite = false;
 	this.buildListItem = function() {
 		this.li = document.createElement('li');
 		const list = document.querySelector(`#${this.level.replace(' ','_')}_spells`);
@@ -54,9 +39,21 @@ function Spell(name, level, school) {
 		newSpan.textContent = this.name;
 		return newSpan;
 	}
-	this.makeDomElement = function () {
-		this.buildListItem();
-		this.li.appendChild(this.buildSpan());
+	this.toggleFavorite = function() {
+		this.isFavorite = !this.isFavorite;
+		if(this.isFavorite) {
+			this.favButton.src = 'filled_star.png';
+		} else {
+			this.favButton.src = 'unfilled_star.png';
+		}
+	}
+	this.buildFavButton = function() {
+		this.favButton = document.createElement('img');
+		this.favButton.src = 'unfilled_star.png';
+		this.favButton.addEventListener('click', () => {
+			this.toggleFavorite();
+		})
+		this.favButton.className = 'favButton'
 	}
 	this.remove = function() {
 		const ul = this.li.parentNode;
@@ -65,6 +62,10 @@ function Spell(name, level, school) {
 			ul.parentNode.style.display = 'none';
 		}
 	}
+	this.buildListItem();
+	this.li.appendChild(this.buildSpan());
+	this.buildFavButton();
+	this.li.appendChild(this.favButton);
 }
 
 
@@ -89,7 +90,5 @@ function Spell(name, level, school) {
 		ev.target.removeName.value = '';
 		ev.target.removeName.focus();
 	});
-	document.querySelector('#quill').addEventListener('click', ev => app.save());
-	document.querySelector('#skull').addEventListener('click', ev => app.load());
 	var spellBook = app.spellList;
 }
