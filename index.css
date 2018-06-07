@@ -10,18 +10,28 @@ body {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.skull {
+#skull {
   position: absolute;
   right: 5vw;
   top: 5vw;
   transform: rotate(15deg);
   width: 25vw;
+  height: calc(25vw*533/400);
   box-sizing: border-box;
 }
 
-div.skull {
-  top: 20vw;
+#skull img {
+  position:absolute;
+  width: 100%;
+}
+
+#skull div {
+  position:absolute;
+  top:50%;
+  left:50%;
+  width: 100%;
   text-align: center;
+  transform: translate(-50%,-50%);
 }
 
 img#quill {

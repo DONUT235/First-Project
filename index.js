@@ -1,7 +1,10 @@
 function SpellBook() {
 	this.spellList = [];
 	this.addSpell = function(name, level, school) {
-		this.spellList.push(new Spell(name,level,school));
+		if(name) {
+			this.spellList.push(new Spell(name,level,school,false));
+		}
+		this.save();
 	}
 	this.removeSpell = function(name) {
 		for(let i = 0; i < this.spellList.length; ++i) {
@@ -11,21 +14,30 @@ function SpellBook() {
 				return;
 			}
 		}
+		this.save();
 	}
 
 	//TODO: Make save/load interface
-	this.save = function() {	
+	this.save = function() {
+		localStorage.setItem('list',JSON.stringify(this.spellList));
 	}
 	this.load = function() {
+		let prevData = localStorage.getItem('list');
+		if(prevData) {
+			prevData = JSON.parse(prevData);
+			for(let spell of prevData) {
+				console.log(spell);
+				this.spellList.push(new Spell(spell.name,spell.level,spell.school,spell.isFavorite))
+			}
+		}
 	}
 }
 
-function Spell(name, level, school) {
+function Spell(name, level, school, isFavorite) {
 	this.name = name;
 	this.level = level;
 	this.school = school;
-	this.isFavorite = false; /*spells which are favorites may not be deleted, and are
-	preserved when a JSON list is loaded */
+	this.isFavorite = isFavorite; /*spells which are favorites may not be deleted*/
 	this.buildListItem = function() {
 		this.li = document.createElement('li');
 		const list = document.querySelector(`#${this.level.replace(' ','_')}_spells`);
@@ -47,10 +59,11 @@ function Spell(name, level, school) {
 		} else {
 			this.favButton.src = 'unfilled_star.png';
 		}
+		app.save();
 	}
 	this.buildFavButton = function() {
 		this.favButton = document.createElement('img');
-		this.favButton.src = 'unfilled_star.png';
+		this.favButton.src = this.isFavorite ? 'filled_star.png' : 'unfilled_star.png';
 		this.favButton.addEventListener('click', () => {
 			this.toggleFavorite();
 		})
@@ -63,12 +76,16 @@ function Spell(name, level, school) {
 			ul.parentNode.style.display = 'none';
 		}
 	}
+	this.toJSON = function() {
+		return {name: this.name, level: this.level, school: this.school, isFavorite: this.isFavorite};
+	}
 	this.buildListItem();
 	this.li.appendChild(this.buildSpan());
 	this.buildFavButton();
 	this.li.appendChild(this.favButton);
 }
 
+var app = new SpellBook(); //bluh
 
 {
 	const book = document.querySelector('main');
@@ -77,7 +94,6 @@ function Spell(name, level, school) {
 		book.innerHTML += (`<div style="display:none"><span class="spellCategory">Level ${i} Spells</span>` +
 		                   `<ul id=Level_${i}_spells></ul></div>`);  
 	}
-	const app = new SpellBook();
 	document.querySelector('#addForm').addEventListener('submit', ev => {
 		ev.preventDefault();
 		const gi = s => ev.target[s].value;
@@ -91,5 +107,5 @@ function Spell(name, level, school) {
 		ev.target.removeName.value = '';
 		ev.target.removeName.focus();
 	});
-	var spellBook = app.spellList;
+	app.load();
 }
