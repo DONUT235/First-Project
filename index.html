@@ -1,82 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Spellbook</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Spellbook</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" media="screen" href="index.css" />
 </head>
 <body>
-  <div id="skull"><img src="skull.png" alt=""><div>Save List</div></div>
-  <img src="quill.png" id="quill" alt="">
-  <div style="display:none" id="secretLoad">
-    <textarea>[]</textarea><br />
-    <button id="loadButton">Load from JSON</button>
-    <button id="hideButton">Close</button>
-  </div>
+	<div id="skull"><img src="skull.png" alt=""><div>Save List</div></div>
+	<img src="quill.png" id="quill" alt="">
+	<div style="display:none" id="secretLoad">
+		<textarea>[]</textarea><br />
+		<button id="loadButton">Load from JSON</button>
+		<button id="hideButton">Close</button>
+	</div>
 
 
-  <h1>Spellbook</h1>
+	<h1>Spellbook</h1>
 
-  <form id="addForm">
-    <div>
-      <input
-        type="text"
-        name="spellName"
-        placeholder="Enter a spell name"
-        autofocus
-      >
-      <select name="spellLevel">
-        <option>Cantrip</option>
-        <option>Level 1</option>
-        <option>Level 2</option>
-        <option>Level 3</option>
-        <option>Level 4</option>
-        <option>Level 5</option>
-        <option>Level 6</option>
-        <option>Level 7</option>
-        <option>Level 8</option>
-        <option>Level 9</option>
-      </select>
-      <select name="spellSchool">
-        <option>Evocation</option>
-        <option>Necromancy</option>
-        <option>Illusion</option>
-        <option>Conjuration</option>
-        <option>Enchantment</option>
-        <option>Transmutation</option>
-        <option>Abjuration</option>
-        <option>Divination</option>
-      </select>
-      <input type="submit" value="Add">
-    </div>
-  </form>
-  <form id="removeForm">
-    <div>
-      <input
-        type="text"
-        name="removeName"
-        placeholder="Name of spell to remove"
-      >
-      <input type="submit" value="Remove">
-    </div>
-  </form>
+	<form id="addForm">
+		<div>
+			<input
+				type="text"
+				name="spellName"
+				placeholder="Enter a spell name"
+				autofocus
+			>
+			<select name="spellLevel">
+				<option>Cantrip</option>
+				<option>Level 1</option>
+				<option>Level 2</option>
+				<option>Level 3</option>
+				<option>Level 4</option>
+				<option>Level 5</option>
+				<option>Level 6</option>
+				<option>Level 7</option>
+				<option>Level 8</option>
+				<option>Level 9</option>
+			</select>
+			<select name="spellSchool">
+				<option>Evocation</option>
+				<option>Necromancy</option>
+				<option>Illusion</option>
+				<option>Conjuration</option>
+				<option>Enchantment</option>
+				<option>Transmutation</option>
+				<option>Abjuration</option>
+				<option>Divination</option>
+			</select>
+			<input type="submit" value="Add">
+		</div>
+	</form>
+	<form id="removeForm">
+		<div>
+			<input
+				type="text"
+				name="removeName"
+				placeholder="Name of spell to remove"
+			>
+			<input type="submit" value="Remove">
+		</div>
+	</form>
 
 
-  <main>
-  </main>
-  <p id="legend">
-    <span class="Evocation">Evocation</span>
-    <span class="Necromancy">Necromancy</span>
-    <span class="Illusion">Illusion</span>
-    <span class="Conjuration">Conjuration</span>
-    <span class="Enchantment">Enchantment</span>
-    <span class="Transmutation">Transmutation</span>
-    <span class="Abjuration">Abjuration</span>
-    <span class="Divination">Divination</span>
-  </p>
+	<main>
+	</main>
+	<p id="legend">
+		<span class="Evocation">Evocation</span>
+		<span class="Necromancy">Necromancy</span>
+		<span class="Illusion">Illusion</span>
+		<span class="Conjuration">Conjuration</span>
+		<span class="Enchantment">Enchantment</span>
+		<span class="Transmutation">Transmutation</span>
+		<span class="Abjuration">Abjuration</span>
+		<span class="Divination">Divination</span>
+	</p>
 
-  <script src="index.js"></script>
+	<script src="index.js"></script>
 </body>
 </html>

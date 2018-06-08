@@ -43,7 +43,6 @@ function Spell(name, level, school, isFavorite) {
 	this.isFavorite = isFavorite; /*spells which are favorites may not be deleted*/
 	this.buildListItem = function() {
 		this.li = document.createElement('li');
-		this.li.draggable = true;
 		const list = document.querySelector(`#${this.level.replace(' ','_')}_spells`);
 		if(list.parentNode.style.display === 'none') {
 			list.parentNode.style.display = "block";
@@ -104,7 +103,7 @@ var save; //bluh
 		ul.id = level.replace(' ','_')+'_spells';
 		const categorySpan = document.createElement('span');
 		categorySpan.className = 'spellCategory';
-		categorySpan.textContent = level==='Cantrip'?level+'s':level+'Spells';
+		categorySpan.textContent = level==='Cantrip'?level+'s':level+' Spells';
 		const div = document.createElement('div');
 		div.style.display = 'none';
 		ul.appendChild(categorySpan);
