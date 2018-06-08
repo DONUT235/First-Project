@@ -1,8 +1,11 @@
 function SpellBook() {
 	this.spellList = [];
+	this.selectedSpell = null;
 	this.addSpell = function(name, level, school) {
 		if(name) {
-			this.spellList.push(new Spell(name,level,school,false));
+			const newSpell = new Spell(name,level,school,false);
+			this.spellList.push(newSpell);
+			//newSpell.li.addEventHandler('mousedown'
 		}
 		this.save();
 	}
@@ -11,10 +14,10 @@ function SpellBook() {
 			if(this.spellList[i].name === name && !this.spellList[i].isFavorite) {
 				this.spellList[i].remove();
 				this.spellList.splice(i,1);
+				this.save();
 				return;
 			}
 		}
-		this.save();
 	}
 
 	//TODO: Make save/load interface
@@ -40,6 +43,7 @@ function Spell(name, level, school, isFavorite) {
 	this.isFavorite = isFavorite; /*spells which are favorites may not be deleted*/
 	this.buildListItem = function() {
 		this.li = document.createElement('li');
+		this.li.draggable = true;
 		const list = document.querySelector(`#${this.level.replace(' ','_')}_spells`);
 		if(list.parentNode.style.display === 'none') {
 			list.parentNode.style.display = "block";
@@ -59,7 +63,7 @@ function Spell(name, level, school, isFavorite) {
 		} else {
 			this.favButton.src = 'unfilled_star.png';
 		}
-		app.save();
+		save();
 	}
 	this.buildFavButton = function() {
 		this.favButton = document.createElement('img');
@@ -85,14 +89,27 @@ function Spell(name, level, school, isFavorite) {
 	this.li.appendChild(this.favButton);
 }
 
-var app = new SpellBook(); //bluh
+var save; //bluh
 
 {
-	const book = document.querySelector('main');
 	//Dynamically add multiple spell categories
+	const book = document.querySelector('main');
+	const levelList = ['Cantrip'];
+	const app = new SpellBook();
 	for(let i = 1; i <= 9; ++i) {
-		book.innerHTML += (`<div style="display:none"><span class="spellCategory">Level ${i} Spells</span>` +
-		                   `<ul id=Level_${i}_spells></ul></div>`);  
+		levelList.push(`Level ${i}`);
+	}
+	for(let level of levelList) {
+		const ul = document.createElement('ul');
+		ul.id = level.replace(' ','_')+'_spells';
+		const categorySpan = document.createElement('span');
+		categorySpan.className = 'spellCategory';
+		categorySpan.textContent = level==='Cantrip'?level+'s':level+'Spells';
+		const div = document.createElement('div');
+		div.style.display = 'none';
+		ul.appendChild(categorySpan);
+		div.appendChild(ul);
+		book.appendChild(div);
 	}
 	document.querySelector('#addForm').addEventListener('submit', ev => {
 		ev.preventDefault();
@@ -108,4 +125,5 @@ var app = new SpellBook(); //bluh
 		ev.target.removeName.focus();
 	});
 	app.load();
+	save = ()=>app.save();
 }
