@@ -8,15 +8,8 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="index.css" />
 </head>
 <body>
-	<div id="skull"><img src="skull.png" alt=""><div>Save List</div></div>
+	<img id="skull" src="skull.png" alt="">
 	<img src="quill.png" id="quill" alt="">
-	<div style="display:none" id="secretLoad">
-		<textarea>[]</textarea><br />
-		<button id="loadButton">Load from JSON</button>
-		<button id="hideButton">Close</button>
-	</div>
-
-
 	<h1>Spellbook</h1>
 
 	<form id="addForm">
@@ -66,6 +59,15 @@
 
 	<main>
 	</main>
+	<div id="preppedSpellMenu">
+		<form class="template slotForm">
+			<label class="slotLabel">
+				<span class='slotsLeft'></span>0/<input type="number" name="maxSlots" min=0>
+				<input type="button" name="castButton" value="Cast">
+				<input type="button" name="restoreButton" value="Restore Slot">
+			</label>
+		</form>
+	</div>
 	<p id="legend">
 		<span class="Evocation">Evocation</span>
 		<span class="Necromancy">Necromancy</span>

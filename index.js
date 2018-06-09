@@ -88,28 +88,59 @@ function Spell(name, level, school, isFavorite) {
 	this.li.appendChild(this.favButton);
 }
 
+function SlotList() {
+	this.levels = {};
+	for(let i = 1; i <= 9; ++i) {
+		this.levels[`Level ${i}`].slotsLeft=0;
+		this.levels[`Level ${i}`].maxSlots=0;
+		//TODO: assign maxInput and leftSpan to necessary DOM elements
+	}
+	this.save = function() {
+		localStorage.setItem('slotsLeft',JSON.stringify(this));
+	}
+	this.load = function() {
+		const loadedData = localStorage.getItem('slotsLeft');
+		if(loadedData) {
+			for(let level in loadedData) {
+				const loadedSlotsLeft = loadedData[level].slotsLeft;
+				const loadedMaxSlots = loadedData[level].maxSlots;
+				this.levels[level].leftSpan.textContent = Integer.toString(loadedSlotsLeft);
+				this.levels[level].maxInput.value = Integer.toString(loadedMaxSlots);
+				this.levels[level].slotsLeft = loadedSlotsLeft;
+				this.levels[level].maxSlots = loadedMaxSlots;
+			}
+		}
+	}
+	this.rest = function() {
+		for(let level in this.maxSlots) {
+			this.slotsLeft[level] = this.maxSlots[level];
+			document.querySelector(/*spellsLeft span for that level*/).textContent = Integer.toString(this.maxSlots[level]);
+		}
+	}
+}
+
 var save; //bluh
 
 {
-	//Dynamically add multiple spell categories
-	const book = document.querySelector('main');
-	const levelList = ['Cantrip'];
 	const app = new SpellBook();
+	const levelList = ['Cantrip'];
+	let target = document.querySelector('main');
 	for(let i = 1; i <= 9; ++i) {
 		levelList.push(`Level ${i}`);
 	}
+
 	for(let level of levelList) {
-		const ul = document.createElement('ul');
-		ul.id = level.replace(' ','_')+'_spells';
-		const categorySpan = document.createElement('span');
-		categorySpan.className = 'spellCategory';
-		categorySpan.textContent = level==='Cantrip'?level+'s':level+' Spells';
-		const div = document.createElement('div');
-		div.style.display = 'none';
-		ul.appendChild(categorySpan);
-		div.appendChild(ul);
-		book.appendChild(div);
+		target.innerHTML += (
+			`<div style="display:none">`+
+			`<span class="spellCategory">${level==='Cantrip'?level+'s':level+' Spells'}`+
+			`</span><ul id="${level.replace(' ','_')}_spells"></ul></div>`);
 	}
+	//Make the form which tracks spell slots
+	for(let level of levelList.slice(1)) {
+
+	}
+
+	//Event listeners
 	document.querySelector('#addForm').addEventListener('submit', ev => {
 		ev.preventDefault();
 		const gi = s => ev.target[s].value;

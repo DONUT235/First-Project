@@ -15,30 +15,19 @@ body {
 	right: 5vw;
 	top: 5vw;
 	transform: rotate(15deg);
-	width: 25vw;
-	height: calc(25vw*533/400);
+	width: 15vw;
 	box-sizing: border-box;
 }
 
-#skull img {
-	position:absolute;
-	width: 100%;
-}
-
-#skull div {
-	position:absolute;
-	top:50%;
-	left:50%;
-	width: 100%;
-	text-align: center;
-	transform: translate(-50%,-50%);
+#preppedSpellMenu {
+	
 }
 
 img#quill {
 	position: absolute;
 	top: calc(30vw + 40px);
 	right: 3vw;
-	width: 20vw;
+	width: 10vw;
 }
 
 h1 {
@@ -52,8 +41,7 @@ h1 {
 
 form {
 	margin-bottom: 1rem;
-	margin-left: 10vw;
-	width: 50vw;
+	width: 40vw;
 }
 
 form > div {
@@ -128,8 +116,8 @@ main {
 	background-image: url(parchment.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
-	width: 50vw;
-	margin-left: 10vw;
+	width: 40vw;
+	margin-left: 0vw;
 	height: calc(100vh - 18.5vw - 4rem);
 	overflow-y: scroll;
 	font-family: "Homemade Apple", cursive;
@@ -144,8 +132,8 @@ main {
 	box-sizing: border-box;
 	background-size: cover;
 	background-repeat: no-repeat;
-	width: 50vw;
-	margin-left: 10vw;
+	width: 40vw;
+	margin-left: 0vw;
 	font-family: "Homemade Apple", cursive;
 	font-size: 1rem;
 	padding: 1.5rem 4rem;
@@ -202,4 +190,8 @@ span.spellCategory {
 
 .favButton {
 	padding-left: 20px;
+}
+
+.template {
+	display:none;
 }
