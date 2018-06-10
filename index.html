@@ -61,12 +61,11 @@
 	</main>
 	<div id="preppedSpellMenu">
 		<form class="template slotForm">
-			<label class="slotLabel">
-				<span class='slotsLeft'></span>0/<input type="number" name="maxSlots" min=0>
-				<input type="button" name="castButton" value="Cast">
-				<input type="button" name="restoreButton" value="Restore Slot">
-			</label>
+			<label><span class='slotsLeft'>0</span>/<input type="number" name="maxSlots" min=0 value=0></label>
+			<input type="button" name="castButton" value="Cast">
+			<input type="button" name="restoreButton" value="Restore Slot">
 		</form>
+		<button id="restButton">Rest</button>
 	</div>
 	<p id="legend">
 		<span class="Evocation">Evocation</span>
