@@ -141,6 +141,8 @@ function SlotList() {
 		this.levels[i].form = formTemplate.cloneNode(true);
 		this.levels[i].form.className = 'slotForm';
 		this.levels[i].leftSpan = this.levels[i].form.querySelector('.slotsLeft');
+		this.levels[i].form.insertBefore(document.createTextNode(`Level ${i+1}: `),
+			this.levels[i].form.querySelector('label'));
 		this.makeHandlers(i);
 		formTemplate.parentNode.insertBefore(this.levels[i].form,restButton);
 	}

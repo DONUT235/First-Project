@@ -23,15 +23,34 @@ li {
 	box-sizing: border-box;
 }
 
-#preppedSpellMenu {
-	
+#quill {
+	position: absolute;
+	top: 10vw;
+	right: calc(25vw + 20px);
+	width: 10vw;
 }
 
-img#quill {
+#preppedSpellMenu {
 	position: absolute;
-	top: calc(30vw + 40px);
-	right: 3vw;
-	width: 10vw;
+	left: calc(2rem + 40vw);
+	top: calc(116px + 18.5vw);
+	background-color: goldenrod;
+	flex-direction: column;
+	display: flex;
+	justify-content: space-evenly;
+	height: calc(100vh - 18.5vw - 4rem);
+}
+
+#preppedSpellMenu, #preppedSpellMenu input {
+	font-family: serif;
+}
+
+#preppedSpellMenu form {
+	width: auto;
+}
+
+#restButton {
+	width: 4em;
 }
 
 h1 {
@@ -46,6 +65,7 @@ h1 {
 form {
 	margin-bottom: 1rem;
 	width: 40vw;
+	white-space:nowrap;
 }
 
 form > div {
@@ -109,10 +129,6 @@ input[type="submit"] {
 	line-height: 1;
 	text-align: center;
 	cursor: pointer;
-}
-
-button[type="submit"]:hover {
-	background-color: #dca936;
 }
 
 main {
